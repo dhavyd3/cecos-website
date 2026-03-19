@@ -1,26 +1,126 @@
 "use client";
 
+import { useI18n } from "@/i18n/context";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-export function PageTransitionLoader() {
+const TRANSITION_DURATION_MS = 800;
+const CONTENT_SWAP_DELAY_MS = 150;
+
+interface PageTransitionContextValue {
+  isTransitioning: boolean;
+  startPageTransition: (action?: () => void) => void;
+}
+
+const PageTransitionContext = createContext<PageTransitionContextValue | undefined>(
+  undefined
+);
+
+export function PageTransitionProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(false);
   const prevPath = useRef(pathname);
+  const isTransitioningRef = useRef(false);
+  const swapTimerRef = useRef<number | null>(null);
+  const hideTimerRef = useRef<number | null>(null);
+
+  const clearTimers = useCallback(() => {
+    if (swapTimerRef.current) {
+      window.clearTimeout(swapTimerRef.current);
+      swapTimerRef.current = null;
+    }
+
+    if (hideTimerRef.current) {
+      window.clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = null;
+    }
+  }, []);
+
+  const startPageTransition = useCallback(
+    (action?: () => void) => {
+      if (isTransitioningRef.current) {
+        return;
+      }
+
+      clearTimers();
+      isTransitioningRef.current = true;
+      setIsLoading(true);
+
+      if (action) {
+        swapTimerRef.current = window.setTimeout(() => {
+          action();
+          swapTimerRef.current = null;
+        }, CONTENT_SWAP_DELAY_MS);
+      }
+
+      hideTimerRef.current = window.setTimeout(() => {
+        isTransitioningRef.current = false;
+        setIsLoading(false);
+        hideTimerRef.current = null;
+      }, TRANSITION_DURATION_MS);
+    },
+    [clearTimers]
+  );
 
   useEffect(() => {
     if (pathname !== prevPath.current) {
       prevPath.current = pathname;
-      setIsLoading(true);
-      const timer = setTimeout(() => setIsLoading(false), 800);
-      return () => clearTimeout(timer);
+      const timer = window.setTimeout(() => {
+        startPageTransition();
+      }, 0);
+
+      return () => window.clearTimeout(timer);
     }
-  }, [pathname]);
+  }, [pathname, startPageTransition]);
+
+  useEffect(() => {
+    return () => {
+      clearTimers();
+    };
+  }, [clearTimers]);
+
+  return (
+    <PageTransitionContext.Provider
+      value={{
+        isTransitioning: isLoading,
+        startPageTransition,
+      }}
+    >
+      {children}
+    </PageTransitionContext.Provider>
+  );
+}
+
+export function usePageTransition() {
+  const context = useContext(PageTransitionContext);
+
+  if (!context) {
+    throw new Error(
+      "usePageTransition must be used within a PageTransitionProvider"
+    );
+  }
+
+  return context;
+}
+
+export function PageTransitionLoader() {
+  const { isTransitioning } = usePageTransition();
 
   return (
     <AnimatePresence>
-      {isLoading && (
+      {isTransitioning && (
         <motion.div
           key="page-loader"
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-background"
@@ -85,11 +185,12 @@ export function PageTransitionContent({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const { locale } = useI18n();
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={pathname}
+        key={`${pathname}:${locale}`}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}

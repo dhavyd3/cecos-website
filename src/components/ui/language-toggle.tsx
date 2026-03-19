@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/i18n/context";
+import { usePageTransition } from "@/components/ui/page-transition";
 import { motion } from "framer-motion";
 
 interface LanguageToggleProps {
@@ -10,7 +11,12 @@ interface LanguageToggleProps {
 
 export function LanguageToggle({ className }: LanguageToggleProps) {
   const { locale, toggleLocale } = useI18n();
+  const { isTransitioning, startPageTransition } = usePageTransition();
   const isFr = locale === "fr";
+
+  const handleToggle = () => {
+    startPageTransition(toggleLocale);
+  };
 
   return (
     <div
@@ -18,18 +24,20 @@ export function LanguageToggle({ className }: LanguageToggleProps) {
         "relative flex w-[72px] h-8 p-0.5 rounded-full cursor-pointer transition-all duration-300 border",
         "bg-zinc-950 border-zinc-800 dark:bg-zinc-950 dark:border-zinc-800",
         "bg-white border-zinc-200 dark:bg-zinc-950 dark:border-zinc-800",
+        isTransitioning && "pointer-events-none opacity-80",
         className
       )}
-      onClick={toggleLocale}
+      onClick={handleToggle}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          toggleLocale();
+          handleToggle();
         }
       }}
       aria-label={`Switch to ${isFr ? "English" : "French"}`}
+      aria-busy={isTransitioning}
     >
       <motion.div
         className="absolute top-0.5 w-[32px] h-[28px] rounded-full bg-primary"
@@ -42,6 +50,7 @@ export function LanguageToggle({ className }: LanguageToggleProps) {
             "flex-1 text-xs font-semibold transition-colors duration-200 rounded-full",
             isFr ? "text-primary-foreground" : "text-muted-foreground"
           )}
+          type="button"
         >
           FR
         </button>
@@ -50,6 +59,7 @@ export function LanguageToggle({ className }: LanguageToggleProps) {
             "flex-1 text-xs font-semibold transition-colors duration-200 rounded-full",
             !isFr ? "text-primary-foreground" : "text-muted-foreground"
           )}
+          type="button"
         >
           EN
         </button>
