@@ -63,7 +63,7 @@ export function Navbar() {
                 CECOS
               </span>
               <span className="block text-[10px] uppercase tracking-widest text-muted-foreground leading-tight">
-                Expertise · Conseil · Services
+                {t.nav.tagline}
               </span>
             </div>
           </Link>

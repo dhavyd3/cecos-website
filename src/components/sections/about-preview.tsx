@@ -30,7 +30,7 @@ export function AboutPreviewSection() {
           >
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
-                src="/images/img-3.jpg"
+                src="/images/img-22.jpg"
                 alt="CECOS team"
                 fill
                 className="object-cover"
@@ -38,7 +38,7 @@ export function AboutPreviewSection() {
             </div>
             <div className="absolute -bottom-6 -right-6 w-48 h-48 rounded-2xl overflow-hidden border-4 border-background shadow-xl hidden md:block">
               <Image
-                src="/images/img-4.jpg"
+                src="/images/img-23.JPG"
                 alt="CECOS consulting session"
                 fill
                 className="object-cover"

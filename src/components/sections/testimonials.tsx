@@ -10,7 +10,7 @@ const testimonialsFr = [
       "CECOS a réalisé un audit financier rigoureux de notre programme, en conformité totale avec les normes ISA. Leur professionnalisme et leur connaissance du contexte africain sont exceptionnels.",
     name: "Programme de Santé Publique",
     designation: "Financé par le Fonds Mondial — Burundi",
-    src: "/images/img-1.jpg",
+    src: "/images/cecos-2.jpeg",
   },
   {
     quote:
@@ -24,7 +24,14 @@ const testimonialsFr = [
       "La formation en gestion des risques dispensée par Dr. Ntezimana a été un véritable catalyseur pour notre équipe. CECOS combine expertise académique et expérience terrain.",
     name: "Organisation Internationale",
     designation: "Basée à Genève — Suisse",
-    src: "/images/img-6.jpg",
+    src: "/images/img-10.jpg",
+  },
+  {
+    quote:
+      "Le renforcement des capacités mené par CECOS a transformé la gestion financière de notre organisation. Une équipe compétente et engagée.",
+    name: "Projet d'Appui Institutionnel",
+    designation: "Financé par la Banque Mondiale — Burundi",
+    src: "/images/img-23.JPG",
   },
 ];
 
@@ -34,7 +41,7 @@ const testimonialsEn = [
       "CECOS conducted a rigorous financial audit of our program, fully compliant with ISA standards. Their professionalism and understanding of the African context are exceptional.",
     name: "Public Health Program",
     designation: "Funded by the Global Fund — Burundi",
-    src: "/images/img-1.jpg",
+    src: "/images/cecos-2.jpeg",
   },
   {
     quote:
@@ -48,7 +55,14 @@ const testimonialsEn = [
       "The risk management training led by Dr. Ntezimana was a true catalyst for our team. CECOS combines academic expertise with field experience.",
     name: "International Organization",
     designation: "Based in Geneva — Switzerland",
-    src: "/images/img-6.jpg",
+    src: "/images/img-10.jpg",
+  },
+  {
+    quote:
+      "The capacity building led by CECOS transformed our organization's financial management. A competent and dedicated team.",
+    name: "Institutional Support Project",
+    designation: "Funded by the World Bank — Burundi",
+    src: "/images/img-23.JPG",
   },
 ];
 

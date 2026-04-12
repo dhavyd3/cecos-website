@@ -60,7 +60,7 @@ export default function AboutPage() {
               className="relative aspect-[4/3] rounded-2xl overflow-hidden"
             >
               <Image
-                src="/images/img-9.jpg"
+                src="/images/img-17.jpg"
                 alt="CECOS history"
                 fill
                 className="object-cover"
@@ -132,7 +132,7 @@ export default function AboutPage() {
             >
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-6">
                 <Image
-                  src="/images/img-10.jpg"
+                  src="/images/frederic-ceo.jpeg"
                   alt={t.about.ceo.name}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -159,7 +159,7 @@ export default function AboutPage() {
             >
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-6">
                 <Image
-                  src="/images/img-3.jpg"
+                  src="/images/ntwari-emery-dg.jpeg"
                   alt={t.about.dg.name}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -183,9 +183,18 @@ export default function AboutPage() {
       <section className="py-20 bg-accent/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[5, 6, 7, 8, 11, 12, 13, 14].map((num, index) => (
+            {[
+              "/images/img-2.jpg",
+              "/images/img-11.jpg",
+              "/images/img-12.jpg",
+              "/images/img-13.jpg",
+              "/images/img-14.jpg",
+              "/images/img-15.jpg",
+              "/images/img-16.jpg",
+              "/images/cecos-3.jpeg",
+            ].map((src, index) => (
               <motion.div
-                key={num}
+                key={src}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -193,8 +202,8 @@ export default function AboutPage() {
                 className="relative aspect-square rounded-xl overflow-hidden"
               >
                 <Image
-                  src={`/images/img-${num}.jpg`}
-                  alt={`CECOS mission ${num}`}
+                  src={src}
+                  alt={`CECOS mission ${index + 1}`}
                   fill
                   className="object-cover hover:scale-110 transition-transform duration-500"
                 />

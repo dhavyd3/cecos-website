@@ -8,6 +8,7 @@ export const translations = {
       services: "Services",
       contact: "Contact",
       consultation: "Consultation gratuite",
+      tagline: "Expertise · Conseil · Services",
     },
     hero: {
       tagline: "Cabinet d'Expertise, de Conseil et de Services",
@@ -220,6 +221,7 @@ export const translations = {
       services: "Services",
       contact: "Contact",
       consultation: "Free consultation",
+      tagline: "Expertise · Consulting · Services",
     },
     hero: {
       tagline: "Expertise, Consulting and Services Firm",
