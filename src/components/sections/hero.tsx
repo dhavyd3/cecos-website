@@ -14,7 +14,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/cecos-1.jpeg"
+          src="/images/img-9.jpg"
           alt="CECOS consulting"
           fill
           className="object-cover"

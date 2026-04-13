@@ -20,10 +20,10 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 const serviceKeys = [
   { key: "audit" as const, icon: ClipboardCheck, img: "/images/img-1.jpg" },
   { key: "consulting" as const, icon: Lightbulb, img: "/images/img-4.jpg" },
-  { key: "capacity" as const, icon: GraduationCap, img: "/images/img-3.jpg" },
+  { key: "capacity" as const, icon: GraduationCap, img: "/images/cecos-3.jpeg" },
   { key: "evaluation" as const, icon: BarChart3, img: "/images/img-5.jpg" },
-  { key: "studies" as const, icon: BookOpen, img: "/images/img-6.jpg" },
-  { key: "risk" as const, icon: ShieldCheck, img: "/images/img-7.jpg" },
+  { key: "studies" as const, icon: BookOpen, img: "/images/img-23.JPG" },
+  { key: "risk" as const, icon: ShieldCheck, img: "/images/img-20.jpg" },
 ];
 
 export default function ServicesPage() {

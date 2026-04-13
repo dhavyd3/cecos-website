@@ -60,7 +60,7 @@ export default function AboutPage() {
               className="relative aspect-[4/3] rounded-2xl overflow-hidden"
             >
               <Image
-                src="/images/img-17.jpg"
+                src="/images/cecos-2.jpeg"
                 alt="CECOS history"
                 fill
                 className="object-cover"
@@ -184,9 +184,9 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {[
-              "/images/img-2.jpg",
+              "/images/cecos-1.jpeg",
               "/images/img-11.jpg",
-              "/images/img-12.jpg",
+              "/images/img-9.jpg",
               "/images/img-13.jpg",
               "/images/img-14.jpg",
               "/images/img-15.jpg",
