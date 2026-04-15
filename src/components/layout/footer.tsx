@@ -16,13 +16,12 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <Image
-                src="/images/Logo cecos.jpg"
+                src="/images/logo-cecos-dark.png"
                 alt="CECOS"
-                width={40}
-                height={40}
-                className="h-10 w-auto rounded"
+                width={140}
+                height={70}
+                className="h-10 w-auto"
               />
-              <span className="text-xl font-bold text-white">CECOS</span>
             </div>
             <p className="text-sm text-zinc-400 leading-relaxed">
               {t.footer.description}

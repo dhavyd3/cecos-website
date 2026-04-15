@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageToggle } from "@/components/ui/language-toggle";
@@ -21,8 +22,14 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { t } = useI18n();
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -51,11 +58,11 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="relative flex items-center gap-3">
             <Image
-              src="/images/Logo cecos.jpg"
+              src={mounted && resolvedTheme === "dark" ? "/images/logo-cecos-dark.png" : "/images/logo-cecos.png"}
               alt="CECOS"
-              width={48}
-              height={48}
-              className="h-10 w-auto lg:h-12 rounded"
+              width={140}
+              height={70}
+              className="h-10 w-auto lg:h-12"
               priority
             />
             <div className="hidden sm:block">
